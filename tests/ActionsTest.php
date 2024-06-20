@@ -179,4 +179,22 @@ class ActionsTest extends TestCase
             $this->assertCount(2, $exception->getFailingRulesMessages());
         }
     }
+
+    public function testStaticDoPerformsAction()
+    {
+        // First, let's create a random test string
+        $testString = str_pad(
+            (string)rand(1, 1000000000),
+            10,
+            '0',
+            STR_PAD_LEFT,
+        );
+
+        // Now let's do the action without the manual instantiation
+        $response = ReverseStringAction::do($testString);
+
+        // Check that the action has been performed correctly
+        $this->assertNotNull($response);
+        $this->assertEquals(strrev($testString), $response);
+    }
 }
