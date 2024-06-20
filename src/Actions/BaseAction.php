@@ -13,6 +13,9 @@ abstract class BaseAction
     private array $businessRules = [];
     private array $failingRules = [];
 
+    /**
+     * @throws BusinessRulesNotSatisfied
+     */
     public function __call(string $name, array $arguments)
     {
         if ($name === 'perform') {
@@ -21,6 +24,8 @@ abstract class BaseAction
             }
             return $this->handle();
         }
+
+        throw new \InvalidArgumentException('Method "' . $name . '" is not defined.');
     }
 
     public function registerBusinessRules(
