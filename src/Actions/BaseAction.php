@@ -57,4 +57,9 @@ abstract class BaseAction
     {
         return count($this->businessRules) > 0;
     }
+
+    public static function do(...$arguments)
+    {
+        return (new static(...$arguments))->perform();
+    }
 }
