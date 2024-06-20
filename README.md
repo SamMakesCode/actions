@@ -104,6 +104,14 @@ $action->perform();
 
 *Note: When the `perform()` method is called on an action, the `__call()` magic method intercepts the request and calls the `handle()` method after any business rules have been run.*
 
+### Shorthand actions
+
+Instead of manually instantiating and performing you action, you can also use the `::do()` shorthand.
+
+```php
+CancelOrder::do($order);
+```
+
 # Contributions
 
 Contributions and issues are welcome. :)
